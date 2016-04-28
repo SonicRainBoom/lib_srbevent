@@ -43,7 +43,8 @@ export class SRBEvent {
     }
   }
 
-  static debug(...data: any[]): void {
+  static debug(...data: any[]): void;
+  static debug(): void {
     let args = (
       arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments)
     );
@@ -57,7 +58,8 @@ export class SRBEvent {
     console.info.apply(null, args);
   };
 
-  static log(...data: any[]): void {
+  static log(...data: any[]): void;
+  static log(): void {
     let args = (
       arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments)
     );
@@ -70,7 +72,8 @@ export class SRBEvent {
     console.log.apply(null, args);
   };
 
-  static info(...data: any[]): void {
+  static info(...data: any[]): void;
+  static info(): void {
     let args = (
       arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments)
     );
@@ -84,7 +87,8 @@ export class SRBEvent {
     console.info.apply(null, args);
   };
 
-  static warn(...data: any[]): void {
+  static warn(...data: any[]): void;
+  static warn(): void {
     let args = (
       arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments)
     );
@@ -98,7 +102,8 @@ export class SRBEvent {
     console.error.apply(null, args);
   };
 
-  static error(...data: any[]): void {
+  static error(...data: any[]): void;
+  static error(): void {
     let args = (
       arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments)
     );
@@ -116,7 +121,8 @@ export class SRBEvent {
    * FATAL: Kills the current process after emitting error and fatal handlers
    * @param data
    */
-  static fatal(...data: any[]): void {
+  static fatal(...data: any[]): void;
+  static fatal(): void {
     let args = (
       arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments)
     );
