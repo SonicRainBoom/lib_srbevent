@@ -4,6 +4,13 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "restify": "^4.0.4"
+    "simple-event-machine": "^1.0.2"
+  },
+  "scripts": {
+    "postinstall": "typings i && tsc -p ."
+  },
+  "devDependencies": {
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1"
   }
 }

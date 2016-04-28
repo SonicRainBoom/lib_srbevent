@@ -1,4 +1,5 @@
-var sem = require('simple-event-machine');
+"use strict";
+let sem = require('simple-event-machine');
 
 export interface ISimpleEventMachine {
   on(
