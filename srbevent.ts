@@ -50,9 +50,7 @@ export class SRBEvent {
     );
     SRBEvent.event.emit(
       'debug',
-      (
-        args.length === 1 ? args[0] : args
-      )
+      args.length === 1 ? args[0] : args
     );
     args.unshift('DEBUG:');
     console.info.apply(null, args);
@@ -65,9 +63,7 @@ export class SRBEvent {
     );
     SRBEvent.event.emit(
       'log',
-      (
-        args.length === 1 ? args[0] : args
-      )
+      args.length === 1 ? args[0] : args
     );
     console.log.apply(null, args);
   };
@@ -79,9 +75,7 @@ export class SRBEvent {
     );
     SRBEvent.event.emit(
       'info',
-      (
-        args.length === 1 ? args[0] : args
-      )
+      args.length === 1 ? args[0] : args
     );
     args.unshift('INFO:');
     console.info.apply(null, args);
@@ -94,9 +88,7 @@ export class SRBEvent {
     );
     SRBEvent.event.emit(
       'warn',
-      (
-        args.length === 1 ? args[0] : args
-      )
+      args.length === 1 ? args[0] : args
     );
     args.unshift('WARN:');
     console.error.apply(null, args);
@@ -109,9 +101,7 @@ export class SRBEvent {
     );
     SRBEvent.event.emit(
       'error',
-      (
-        args.length === 1 ? args[0] : args
-      )
+      args.length === 1 ? args[0] : args
     );
     args.unshift('ERROR:');
     console.error.apply(null, args);
@@ -128,15 +118,11 @@ export class SRBEvent {
     );
     SRBEvent.event.emitSync(
       'error',
-      (
-        args.length === 1 ? args[0] : args
-      )
+      args.length === 1 ? args[0] : args
     );
     SRBEvent.event.emitSync(
       'fatal',
-      (
-        args.length === 1 ? args[0] : args
-      )
+      args.length === 1 ? args[0] : args
     );
     args.unshift('FATAL:');
     console.error.apply(null, args);

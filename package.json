@@ -1,16 +1,23 @@
 {
-  "name": "lib_srbevent",
-  "main": "index.js",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
+  "name"           : "lib_srbevent",
+  "version"        : "0.0.0",
+  "private"        : true,
+  "dependencies"   : {
     "simple-event-machine": "^1.0.2"
   },
-  "scripts": {
+  "scripts"        : {
     "postinstall": "typings i && tsc -p ."
   },
   "devDependencies": {
     "typescript": "^1.8.10",
-    "typings": "^0.8.1"
-  }
+    "typings"   : "^1.0.4"
+  },
+  "main"           : "lib/srbevent.js",
+  "typings"        : "lib/srbevent",
+  "files"          : [
+    "sem.d.ts",
+    "srbevent.ts",
+    "tsconfig.json",
+    "typings.json"
+  ]
 }
