@@ -19,7 +19,6 @@
   ],
   "files"          : [
     "typings/index.d.ts",
-    "sem.d.ts",
     "srbevent.ts"
   ]
 }

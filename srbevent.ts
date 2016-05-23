@@ -1,32 +1,21 @@
 "use strict";
-let sem = require('simple-event-machine');
-
-export interface ISimpleEventMachine {
-  on(
-    eventName: string,
-    callback?: (eventData?: Object, eventName?: string)=>void
-  ): void
-  emit(eventName: string, eventData?: Object): void
-  emitSync(eventName: string, eventData?: Object): void
-  Instance(injectionObject?: Object): ISimpleEventMachine
-}
+import {EventEmitter} from 'events';
+export {EventEmitter} from 'events';
 
 export class SRBEvent {
-  static event: ISimpleEventMachine;
+  static event: EventEmitter;
 
   constructor() {
     if (!SRBEvent.event) {
-      SRBEvent.event          = new sem.Instance();
-      //Polyfill until natively implemented.
-      SRBEvent.event.emitSync = SRBEvent.event.emit;
+      SRBEvent.event = new EventEmitter();
       process.on(
         'exit', (code?: number) => {
-          SRBEvent.event.emitSync('exit', code);
+          SRBEvent.event.emit('exit', code);
         }
       );
       process.on(
         'uncaughtException', (err: Error) => {
-          SRBEvent.event.emitSync('uncaughtException', err);
+          SRBEvent.event.emit('uncaughtException', err);
           process.exit(1);
         }
       );
@@ -94,21 +83,27 @@ export class SRBEvent {
     console.error.apply(null, args);
   };
 
-  static error(...data: any[]): void;
-  static error(): void {
+  /**
+   * emits a 'err'-event. An 'error'-event is to be thrown manually!
+   * @param data
+   */
+  static err(...data: any[]): void;
+  static err(): void {
     let args = (
       arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments)
     );
     SRBEvent.event.emit(
-      'error',
+      'err',
       args.length === 1 ? args[0] : args
     );
     args.unshift('ERROR:');
     console.error.apply(null, args);
   };
 
+  static error = SRBEvent.err;
+
   /**
-   * FATAL: Kills the current process after emitting error and fatal handlers
+   * FATAL: Kills the current process after emitting err and fatal handlers
    * @param data
    */
   static fatal(...data: any[]): void;
@@ -116,11 +111,11 @@ export class SRBEvent {
     let args = (
       arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments)
     );
-    SRBEvent.event.emitSync(
-      'error',
+    SRBEvent.event.emit(
+      'err',
       args.length === 1 ? args[0] : args
     );
-    SRBEvent.event.emitSync(
+    SRBEvent.event.emit(
       'fatal',
       args.length === 1 ? args[0] : args
     );
